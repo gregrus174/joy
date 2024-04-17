@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bestsite</title>
+    <style>
+        @font-face {
+            font-family: 'SHRIFT';
+            src: url('SHRIFT.ttf') format('truetype');
+        }
+        body {
+            background-image: url('black-watercolor-background.jpg');
+            background-size: 1600px 750px;
+            color: white;
+            font-family: SHRIFT;
+            text-align: left;
+            padding-top: -30px;
+            padding-left: 30px;
+        }
+        h1 {
+            text-shadow: -1px -1px 0 #48D1CC, 1px -1px 0 #48D1CC, -1px 1px 0 #48D1CC, 1px 1px 0 #48D1CC;
+            font-size: 50px;
+            text-transform: uppercase;
+        }
+        h2 {
+            text-shadow: -1px -1px 0 #48D1CC, 1px -1px 0 #48D1CC, -1px 1px 0 #48D1CC, 1px 1px 0 #48D1CC;
+            font-size: 50px;
+            text-transform: uppercase;
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin-right: 30px;
+        }
+        .text {
+            color: #ffffff;
+            font-size: 40px;
+            padding: 8px 12px;
+            position: absolute;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+        }
+        * {box-sizing: border-box}
+        body {font-family: SHRIFT, sans-serif; margin:0}
+        .mySlides {display: none}
+        img {vertical-align: middle;}
+        .slideshow-container {
+            float: right;
+            max-width:700px;
+            position: relative;
+            margin-left:20px;
+            margin-right: 20px;
+            margin-bottom: 20px;
+        }
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -22px;
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        .prev:hover, .next:hover {
+            background-color: rgba(0,0,0,0.1);
+        }
+        .numbertext {
+            color: #ffffff;
+            font-size: 20px;
+            padding: 8px 12px;
+            position: absolute;
+            top: 0;
+        }
+        .active, .dot:hover {
+            background-color: #111111;
+        }
+        .fade {
+            -webkit-animation-name: fade;
+            -webkit-animation-duration: 1.5s;
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+        @-webkit-keyframes fade {
+            from {opacity: .4} 
+            to {opacity: 1}
+        }
+        @keyframes fade {
+            from {opacity: .4} 
+            to {opacity: 1}
+        }
+        @media only screen and (max-width: 300px) {
+            .prev, .next,.text {font-size: 11px}
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.9);
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 900px;
+            max-height: 100%;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 50px;
+            font-weight: bold;
+            margin-right: 30px;
+        }
+        .close:hover, .close:focus {
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .container {
+            overflow: auto; /* Это необходимо для корректного отображения контейнера с плавающими элементами */
+        }
+
+        .left-column {
+            float: left;
+            width: 50%; /* Ширина левой колонки */
+        }
+
+        .right-column {
+            float: right;
+            width: 50%; /* Ширина правой колонки */
+        }
+
+        .slideshow-container {
+            margin-bottom: 20px; /* Отступ между коллажами */
+        }
+    </style>
+</head>
+<body>
+    <h1>site A</h1>
+    <h2>site B</h2>
+    <div class="slideshow-container">
+        <div class="mySlides fade">
+            <div class="numbertext">1 / 2</div>
+            <img src="ascent2.jpg" style="width:100%" onclick="openFullscreen(1)">
+            <div class="text"></div>
+        </div>
+        <div class="mySlides fade">
+            <div class="numbertext">2 / 2</div>
+            <img src="ascent1.jpg" style="width:100%" onclick="openFullscreen(2)">
+            <div class="text"></div>
+        </div>
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+
+    <div id="myModal" class="modal">
+        <span class="close" onclick="closeFullscreen()">&times;</span>
+        <img class="modal-content" id="img01">
+        <a class="prev" onclick="plusSlidesModal(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlidesModal(1)">&#10095;</a>
+    </div>
+
+    <script>
+        var slideIndex = 1;
+        var slideIndexModal = 1;
+        var slides = document.getElementsByClassName("mySlides");
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            var i;
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slideIndex - 1].style.display = "block";
+        }
+
+        function openFullscreen(n) {
+            var modal = document.getElementById("myModal");
+            var modalImg = document.getElementById("img01");
+            modal.style.display = "block";
+            modalImg.src = slides[n - 1].getElementsByTagName("img")[0].src;
+            slideIndexModal = n;
+        }
+
+        function closeFullscreen() {
+            var modal = document.getElementById("myModal");
+            modal.style.display = "none";
+        }
+
+        function plusSlidesModal(n) {
+            showSlidesModal(slideIndexModal += n);
+        }
+
+        function showSlidesModal(n) {
+            var i;
+            if (n > slides.length) { slideIndexModal = 1 }
+            if (n < 1) { slideIndexModal = slides.length }
+            var modalImg = document.getElementById("img01");
+            modalImg.src = slides[slideIndexModal - 1].getElementsByTagName("img")[0].src;
+        }
+    </script>
+</body>
+</html>
